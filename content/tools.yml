@@ -1,0 +1,42 @@
+title: Tech Stack
+description: Tools, libraries, and technologies I use and recommend.
+
+tools:
+  frontend:
+    title: Frontend
+    items:
+      - src: /tools/vuejs.svg
+        alt: Vue.js
+      - src: /tools/nuxt.svg
+        alt: Nuxt
+      - src: /tools/tailwindcss.svg
+        alt: Tailwind CSS
+      - src: /tools/pinia.svg
+        alt: Pinia
+  backend:
+    title: Backend & Infrastructure
+    items:
+      - src: /tools/nodejs.svg
+        alt: Node.js
+      - src: /tools/php.svg
+        alt: PHP
+      - src: /tools/laravel.svg
+        alt: Laravel
+      - src: /tools/mysql.svg
+        alt: MySQL
+      - src: /tools/postgresql.svg
+        alt: PostgreSQL
+      - src: /tools/redis.svg
+        alt: Redis
+  development:
+    title: Development Tools
+    items:
+      - src: /tools/docker.svg
+        alt: Docker
+  other:
+    title: Other
+    items:
+      - src: /tools/figma.svg
+        alt: Figma
+      - src: /tools/photoshop.svg
+        alt: Photoshop

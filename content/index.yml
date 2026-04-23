@@ -1,0 +1,14 @@
+seo:
+  title:
+  description: I'm Mạnh Dũng, a Full-stack developer based in Vietnam. Open source enthusiast.
+
+title:
+description:
+
+hero:
+  title: Hi, I'm Mạnh Dũng
+  description: Full-stack developer based in Vietnam, <span id="age">00.00000000000</span> years old. I have a passion for building web applications and exploring new technologies.
+
+about:
+  title: About
+  description: As a front-end developer with experience, I leverage my FPT Polytechnic Web Programming Specialization experiences. My approach blends creative strategy with technical expertise, transforming concepts into functional, purposeful digital products that seamlessly integrate design and technology.

@@ -1,0 +1,12 @@
+company:
+  name: FPT Polytechnic
+  logo: /images/fpt-polytechnic.svg
+
+position:
+  role: Web Programming Specialization
+  type: Full-time
+  startDate: 2022-07-15
+  endDate: 2024-12-15
+  location: Hanoi, Vietnam
+
+note: 'GPA: 3.65/4.0'

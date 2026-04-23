@@ -1,0 +1,37 @@
+import { defineCollection, defineContentConfig, z } from '@nuxt/content';
+
+import { baseSchema, createButtonSchema } from './schemas/common';
+import { experienceSchema } from './schemas/experience';
+import { toolsSchema } from './schemas/tools';
+
+export default defineContentConfig({
+  collections: {
+    index: defineCollection({
+      type: 'page',
+      source: 'index.yml',
+      schema: z.object({
+        hero: baseSchema.extend({
+          links: z.array(createButtonSchema),
+        }),
+        about: baseSchema,
+      }),
+    }),
+
+    experience: defineCollection({
+      type: 'data',
+      source: 'experience/**/*.yml',
+      schema: experienceSchema,
+    }),
+
+    pages: defineCollection({
+      type: 'page',
+      source: [{ include: 'experience.yml' }, { include: 'education.yml' }],
+    }),
+
+    tools: defineCollection({
+      type: 'page',
+      source: 'tools.yml',
+      schema: toolsSchema,
+    }),
+  },
+});

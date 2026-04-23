@@ -1,0 +1,17 @@
+company:
+  name: Miichisoft
+  url: https://miichisoft.com
+  logo: /images/miichisoft.svg
+
+position:
+  role: Frontend Developer
+  type: Internship
+  startDate: 2025-03-03
+  endDate: 2025-05-15
+  location: Hanoi, Vietnam
+
+skills:
+  - name: Vue.js
+  - name: Laravel
+  - name: PHP
+  - name: Tailwind CSS

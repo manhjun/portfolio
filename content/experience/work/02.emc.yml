@@ -1,0 +1,15 @@
+company:
+  name: EMC Group Joint Stock Company
+
+position:
+  role: Frontend Developer
+  type: Contract
+  startDate: 2025-05-26
+  endDate: 2025-12-31
+  location: Hanoi, Vietnam
+
+skills:
+  - name: Next.js
+  - name: PHP
+  - name: Laravel
+  - name: Tailwind CSS
