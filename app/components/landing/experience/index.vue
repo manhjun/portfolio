@@ -23,6 +23,9 @@ const imgError = ref(false);
         class="flex gap-4"
       >
         <UAvatar
+          :ui="{
+            image: 'object-contain',
+          }"
           :src="experience.company.logo"
           :alt="experience.company.name"
           :text="experience.company.name.charAt(0)"

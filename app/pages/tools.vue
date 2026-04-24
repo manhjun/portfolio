@@ -49,6 +49,9 @@ definePageMeta({
               :name="tool.alt"
               :avatar="{
                 src: tool.src,
+                ui: {
+                  image: 'object-contain',
+                },
               }"
             />
           </div>
