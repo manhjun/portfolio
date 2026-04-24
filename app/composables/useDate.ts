@@ -1,34 +1,28 @@
 import type { ExperienceItem } from '@/types/experience';
 
 export const useDate = () => {
-  const parseDate = (date: string) => {
-    return new Date(date);
+  const toDate = (date: Date | string | 'present'): Date => {
+    if (date === 'present') return new Date();
+    if (typeof date === 'string') return new Date(date);
+    return date;
   };
 
-  const formatDate = (date: Date | string) => {
-    if (typeof date === 'string') {
-      date = new Date(date);
-    }
+  const parseDate = (date: string): Date => new Date(date);
 
-    return date.toLocaleString('en-US', { month: 'short', year: 'numeric' });
-  };
+  const formatDate = (date: Date): string =>
+    date.toLocaleString('en-US', { month: 'short', year: 'numeric' });
 
   const calculateDuration = (
     startDate: Date | string,
     endDate: Date | string | 'present',
   ): string => {
-    const start = typeof startDate === 'string' ? new Date(startDate) : startDate;
-    const end =
-      endDate === 'present'
-        ? new Date()
-        : typeof endDate === 'string'
-          ? new Date(endDate)
-          : endDate;
+    const start = toDate(startDate);
+    const end = toDate(endDate);
 
     const diffInDays = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
 
     if (diffInDays < 30) {
-      return `${diffInDays} day${diffInDays !== 1 ? 's' : ''}`;
+      return `${diffInDays} day${diffInDays === 1 ? '' : 's'}`;
     }
 
     const diffInMonths =
@@ -37,98 +31,51 @@ export const useDate = () => {
     const years = Math.floor(diffInMonths / 12);
     const months = diffInMonths % 12;
 
-    if (years === 0) {
-      return `${months} mo${months === 1 ? '' : 's'}`;
-    }
-    if (months === 0) {
-      return `${years} yr${years === 1 ? '' : 's'}`;
-    }
+    if (years === 0) return `${months} mo${months === 1 ? '' : 's'}`;
+    if (months === 0) return `${years} yr${years === 1 ? '' : 's'}`;
     return `${years} yr${years === 1 ? '' : 's'} ${months} mo${months === 1 ? '' : 's'}`;
   };
 
-  const calculateTotalCompanyDuration = (experience: ExperienceItem): string => {
-    let earliestStart =
-      typeof experience.position.startDate === 'string'
-        ? new Date(experience.position.startDate)
-        : experience.position.startDate;
+  const getEndDateText = (endDate: Date | string | 'present', showPresent: boolean): string => {
+    if (endDate === 'present') return 'Present';
+    if (showPresent) return 'Current';
+    return formatDate(toDate(endDate));
+  };
 
-    let latestEnd =
-      typeof experience.position.endDate === 'string' && experience.position.endDate !== 'present'
-        ? new Date(experience.position.endDate)
-        : experience.position.endDate;
+  const getExperienceDateRange = (
+    experience: ExperienceItem,
+  ): { earliest: Date; latest: Date | 'present' } => {
+    let earliest = toDate(experience.position.startDate);
+    let latest: Date | 'present' =
+      experience.position.endDate === 'present' ? 'present' : toDate(experience.position.endDate);
 
-    if (experience.promotions && experience.promotions.length > 0) {
-      for (const position of experience.promotions) {
-        if (typeof position.startDate === 'string') {
-          position.startDate = new Date(position.startDate);
-        }
-        if (typeof position.endDate === 'string' && position.endDate !== 'present') {
-          position.endDate = new Date(position.endDate);
-        }
+    for (const position of experience.promotions ?? []) {
+      const start = toDate(position.startDate);
+      if (start < earliest) earliest = start;
 
-        if (position.startDate < earliestStart) {
-          earliestStart = position.startDate;
-        }
-        if (
-          position.endDate !== 'present' &&
-          latestEnd !== 'present' &&
-          position.endDate > (latestEnd as Date)
-        ) {
-          latestEnd = position.endDate;
-        }
+      if (position.endDate === 'present') {
+        latest = 'present';
+      } else if (latest !== 'present') {
+        const end = toDate(position.endDate);
+        if (end > latest) latest = end;
       }
     }
 
-    return calculateDuration(earliestStart, latestEnd);
+    return { earliest, latest };
   };
 
-  const getEndDateText = (endDate: Date | string | 'present', showPresent: boolean): string => {
-    if (typeof endDate === 'string' && endDate !== 'present') {
-      endDate = new Date(endDate);
-    }
-
-    if (endDate === 'present') {
-      return 'Present';
-    }
-    if (showPresent) {
-      return 'Current';
-    }
-    return formatDate(endDate as Date);
+  const calculateTotalCompanyDuration = (experience: ExperienceItem): string => {
+    const { earliest, latest } = getExperienceDateRange(experience);
+    return calculateDuration(earliest, latest);
   };
 
   const getLatestEndDate = (experience: ExperienceItem): Date => {
-    let latestEnd =
-      typeof experience.position.endDate === 'string' && experience.position.endDate !== 'present'
-        ? new Date(experience.position.endDate)
-        : experience.position.endDate;
-
-    if (experience.promotions && experience.promotions.length > 0) {
-      for (const position of experience.promotions) {
-        if (typeof position.endDate === 'string' && position.endDate !== 'present') {
-          position.endDate = new Date(position.endDate);
-        }
-
-        const isPromotionNewer =
-          position.endDate !== 'present' &&
-          latestEnd !== 'present' &&
-          position.endDate > (latestEnd as Date);
-
-        if (isPromotionNewer) {
-          latestEnd = position.endDate;
-        }
-      }
-    }
-
-    return latestEnd === 'present' ? new Date() : (latestEnd as Date);
+    const { latest } = getExperienceDateRange(experience);
+    return latest === 'present' ? new Date() : latest;
   };
 
-  const sortByEndDate = (items: ExperienceItem[]): ExperienceItem[] => {
-    return [...items].sort((a, b) => {
-      const endDateA = getLatestEndDate(a);
-      const endDateB = getLatestEndDate(b);
-      return endDateB.getTime() - endDateA.getTime();
-    });
-  };
+  const sortByEndDate = (items: ExperienceItem[]): ExperienceItem[] =>
+    [...items].sort((a, b) => getLatestEndDate(b).getTime() - getLatestEndDate(a).getTime());
 
   return {
     parseDate,

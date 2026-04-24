@@ -1,20 +1,52 @@
 <script setup lang="ts">
 import type { ExperienceCollectionItem } from '@nuxt/content';
+import type { TimelineItem } from '@nuxt/ui';
 
 defineProps<{
   title: string;
-  isEducation?: boolean;
+  titleAs?: string;
+  hidePresent?: boolean;
   page: ExperienceCollectionItem[];
 }>();
 
 const { calculateTotalCompanyDuration } = useDate();
 
-const imgError = ref(false);
+const imgErrors = ref<Record<string, boolean>>({});
+
+type ExperienceTimelineItem = TimelineItem & {
+  _raw: ExperienceCollectionItem['position'] | null;
+  _isMain?: boolean;
+  _isGhost?: boolean;
+};
+
+function getTimelineItems(experience: ExperienceCollectionItem): ExperienceTimelineItem[] {
+  const mainItem: ExperienceTimelineItem = {
+    _raw: experience.position,
+    _isMain: true,
+  };
+
+  const promotionItems: ExperienceTimelineItem[] = (experience.promotions ?? []).map((p) => ({
+    _raw: p,
+    _isMain: false,
+  }));
+
+  const ghostItem: ExperienceTimelineItem = {
+    _isGhost: true,
+    _raw: null,
+  };
+
+  return [mainItem, ...promotionItems, ghostItem];
+}
 </script>
 
 <template>
   <div class="flex flex-col gap-6">
-    <h1 class="font-bold text-2xl">{{ title }}</h1>
+    <component
+      :is="titleAs ?? 'h1'"
+      class="font-bold text-2xl"
+    >
+      {{ title }}
+    </component>
 
     <div class="flex flex-col gap-8">
       <div
@@ -23,16 +55,16 @@ const imgError = ref(false);
         class="flex gap-4"
       >
         <UAvatar
-          :ui="{
-            image: 'object-contain',
-          }"
+          :ui="{ image: 'object-contain' }"
           :src="experience.company.logo"
           :alt="experience.company.name"
           :text="experience.company.name.charAt(0)"
-          :class="[!experience.company.logo || imgError ? 'border border-default' : '']"
+          :class="[
+            !experience.company.logo || imgErrors[experience.id] ? 'border border-default' : '',
+          ]"
           class="bg-default rounded-md"
           size="xl"
-          @error="imgError = true"
+          @error="imgErrors[experience.id] = true"
         />
 
         <div class="flex grow flex-col">
@@ -52,7 +84,7 @@ const imgError = ref(false);
             </h2>
 
             <span
-              v-if="!isEducation"
+              v-if="!hidePresent"
               class="text-muted-foreground text-sm"
             >
               {{ calculateTotalCompanyDuration(experience) }} ·
@@ -64,40 +96,36 @@ const imgError = ref(false);
             v-if="experience.promotions && experience.promotions.length > 0"
             class="relative flex flex-col"
           >
-            <div class="absolute top-2 bottom-2 left-1.25 w-0.5 bg-border" />
-
-            <div class="relative flex gap-4">
-              <div class="relative flex h-full w-3 items-center justify-center">
-                <div class="z-10 h-3 w-3 rounded-full bg-accented" />
-              </div>
-              <div class="grow pt-1">
-                <LandingExperiencePositionCard
-                  :is-education="isEducation"
-                  :note="experience.note"
-                  :position="experience.position"
-                />
-
-                <LandingExperienceSkills :skills="experience.skills" />
-              </div>
-            </div>
-
-            <div
-              v-for="position in experience.promotions"
-              :key="`${experience.company}-${position.role}`"
-              class="relative mt-6 flex gap-4"
+            <UTimeline
+              :ui="{
+                indicator: 'bg-default',
+                item: 'last:hidden',
+              }"
+              :items="getTimelineItems(experience)"
+              size="3xs"
             >
-              <div class="relative flex h-full w-3 items-center justify-center">
-                <div class="z-10 h-2 w-2 rounded-full bg-accented" />
-              </div>
-              <div class="grow pt-1">
-                <LandingExperiencePositionCard
-                  :position="position"
-                  :is-education="isEducation"
-                />
+              <template #indicator="{ item }">
+                <div
+                  class="size-4 rounded-full bg-default ring ring-default flex items-center justify-center my-1"
+                >
+                  <div
+                    :class="(item as ExperienceTimelineItem)._isMain ? 'size-2.5' : 'size-2'"
+                    class="rounded-full bg-primary"
+                  />
+                </div>
+              </template>
 
-                <LandingExperienceSkills :skills="experience.skills" />
-              </div>
-            </div>
+              <template #wrapper="{ item }">
+                <template v-if="!(item as ExperienceTimelineItem)._isGhost">
+                  <LandingExperiencePositionCard
+                    :position="(item as ExperienceTimelineItem)._raw!"
+                    :hide-present="hidePresent"
+                  />
+
+                  <LandingExperienceSkills :skills="experience.skills" />
+                </template>
+              </template>
+            </UTimeline>
           </div>
 
           <div
@@ -105,9 +133,8 @@ const imgError = ref(false);
             class="flex flex-col"
           >
             <LandingExperiencePositionCard
-              :is-education="isEducation"
+              :hide-present="hidePresent"
               :position="experience.position"
-              :note="experience.note"
             />
 
             <LandingExperienceSkills :skills="experience.skills" />

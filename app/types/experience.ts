@@ -16,6 +16,7 @@ export interface Position {
   startDate: Date | string;
   endDate: Date | string | 'present';
   location: string;
+  note?: string;
 }
 
 export interface ExperienceItem {
@@ -27,5 +28,4 @@ export interface ExperienceItem {
   skills: Skill[];
   position: Position;
   promotions?: Position[];
-  note?: string;
 }

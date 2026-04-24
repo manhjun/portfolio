@@ -55,11 +55,13 @@ definePageMeta({
       title="Work"
       :page="workExperience"
     />
+
     <LandingExperience
       class="mt-8"
       title="Education"
+      title-as="h2"
       :page="education"
-      is-education
+      hide-present
     />
   </template>
 </template>

@@ -19,6 +19,7 @@ const positionSchema = z.object({
   startDate: z.date(),
   endDate: z.union([z.date(), z.literal('present')]),
   location: z.string(),
+  note: z.string().optional(),
 });
 
 export const experienceSchema = z.object({
@@ -30,5 +31,4 @@ export const experienceSchema = z.object({
   position: positionSchema,
   skills: z.array(skillsSchema),
   promotions: z.array(positionSchema).optional(),
-  note: z.string().optional(),
 });
