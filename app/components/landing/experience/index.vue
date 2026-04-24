@@ -8,6 +8,8 @@ defineProps<{
 }>();
 
 const { calculateTotalCompanyDuration } = useDate();
+
+const imgError = ref(false);
 </script>
 
 <template>
@@ -24,9 +26,10 @@ const { calculateTotalCompanyDuration } = useDate();
           :src="experience.company.logo"
           :alt="experience.company.name"
           :text="experience.company.name.charAt(0)"
-          :class="experience.company.logo ?? 'border border-default'"
-          class="h-12 w-12 bg-default rounded-md"
-          size="lg"
+          :class="[!experience.company.logo || imgError ? 'border border-default' : '']"
+          class="bg-default rounded-md"
+          size="xl"
+          @error="imgError = true"
         />
 
         <div class="flex grow flex-col">

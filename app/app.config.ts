@@ -13,18 +13,12 @@ export default defineAppConfig({
         description: 'text-left text-wrap text-md sm:text-md lg:text-md text-pretty! mt-3!',
       },
     },
-    tooltip: {
-      slots: {
-        content: 'bg-(--ui-bg-inverted) text-inverted',
-        arrow: 'fill-(--ui-bg-inverted) stroke-(--ui-bg-inverted)',
-      },
-    },
   },
   footer: {
     credits: {
       message: 'Made with ❤️ by',
-      name: 'Mạnh Dũng',
-      year: `${new Date().getFullYear()} • `,
+      name: 'Mạnh Dũng ♐',
+      year: `${new Date().getFullYear()}`,
     },
     links: [
       {

@@ -24,18 +24,30 @@ const remainingSkills =
       {{ skill.name }}<span v-if="index < displaySkills.length - 1">, </span>
     </template>
 
-    <UTooltip
+    <UPopover
       v-if="remainingCount > 0"
+      :ui="{
+        content: 'flex items-center px-2.5 py-1 text-xs text-inverted bg-inverted select-none',
+        arrow: 'fill-(--ui-bg-inverted) stroke-(--ui-bg-inverted)',
+      }"
       arrow
-      :delay-duration="0"
-      :text="remainingSkills"
+      mode="hover"
       :content="{
         side: 'top',
         sideOffset: 1,
       }"
-      class="ml-1 cursor-help underline decoration-dotted underline-offset-2"
     >
-      <span>and +{{ remainingCount }} skill{{ remainingCount !== 1 ? 's' : '' }}</span>
-    </UTooltip>
+      <UButton
+        :label="`and +${remainingCount} skill${remainingCount !== 1 ? 's' : ''}`"
+        variant="link"
+        :ui="{
+          base: 'ml-1 p-0 font-medium text-sm text-default cursor-help underline decoration-dotted underline-offset-2',
+        }"
+      />
+
+      <template #content>
+        <span>{{ remainingSkills }}</span>
+      </template>
+    </UPopover>
   </div>
 </template>
