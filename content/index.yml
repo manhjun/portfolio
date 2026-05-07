@@ -7,7 +7,7 @@ description:
 
 hero:
   title: Hi, I'm Mạnh Dũng
-  description: Full-stack developer based in Vietnam, <span id="age">00.00000000000</span> years old. I have a passion for building web applications and exploring new technologies.
+  description: Full-stack developer based in Vietnam, <span id="age"></span> years old. I have a passion for building web applications and exploring new technologies.
 
 about:
   title: About

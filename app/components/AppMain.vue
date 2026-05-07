@@ -11,15 +11,6 @@ if (!page.value) {
   });
 }
 
-useHead({
-  script: [
-    {
-      src: '/age.js',
-      tagPosition: 'bodyClose',
-    },
-  ],
-});
-
 const router = useRouter();
 
 const items = computed(() =>

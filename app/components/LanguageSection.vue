@@ -21,7 +21,7 @@ defineProps<{
             :class="[
               'fi',
               `fi-${lang.flag}`,
-              'w-fit h-fit text-xl rounded-xs object-cover',
+              'w-fit h-fit text-2xl object-cover',
               lang.border && 'ring-1 ring-default dark:ring-0',
             ]"
           />
@@ -29,11 +29,11 @@ defineProps<{
 
         <div class="flex grow flex-col">
           <div class="flex flex-col">
-            <div class="flex items-center">
+            <div class="flex items-center gap-2">
               <h3 class="font-semibold text-lg">
                 {{ lang.name }}
               </h3>
-              ㆍ
+              ·
               <span class="text-muted-foreground text-sm">
                 {{ lang.proficiency }}
               </span>
