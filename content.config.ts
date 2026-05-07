@@ -3,6 +3,7 @@ import { defineCollection, defineContentConfig, z } from '@nuxt/content';
 import { baseSchema, createButtonSchema } from './schemas/common';
 import { experienceSchema } from './schemas/experience';
 import { toolsSchema } from './schemas/tools';
+import { languagesSchema } from './schemas/languages';
 
 export default defineContentConfig({
   collections: {
@@ -32,6 +33,12 @@ export default defineContentConfig({
       type: 'page',
       source: 'tools.yml',
       schema: toolsSchema,
+    }),
+
+    languages: defineCollection({
+      type: 'data',
+      source: 'languages.yml',
+      schema: languagesSchema,
     }),
   },
 });

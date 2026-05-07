@@ -11,6 +11,10 @@ if (!page.value) {
   });
 }
 
+const { data: languages } = await useAsyncData('languages-section', () =>
+  queryCollection('languages').first(),
+);
+
 useSeoMeta({
   title: page.value?.seo.title || page.value?.title,
   ogTitle: page.value?.seo.title || page.value?.title,
@@ -26,7 +30,8 @@ definePageMeta({
 </script>
 
 <template>
-  <UPage v-if="page">
+  <UPage v-if="page && languages">
     <LandingAbout :page />
+    <LanguageSection :page="languages" />
   </UPage>
 </template>

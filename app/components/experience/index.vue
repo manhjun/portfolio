@@ -19,7 +19,7 @@ type ExperienceTimelineItem = TimelineItem & {
   _isGhost?: boolean;
 };
 
-function getTimelineItems(experience: ExperienceCollectionItem): ExperienceTimelineItem[] {
+const getTimelineItems = (experience: ExperienceCollectionItem): ExperienceTimelineItem[] => {
   const mainItem: ExperienceTimelineItem = {
     _raw: experience.position,
     _isMain: true,
@@ -36,7 +36,7 @@ function getTimelineItems(experience: ExperienceCollectionItem): ExperienceTimel
   };
 
   return [mainItem, ...promotionItems, ghostItem];
-}
+};
 </script>
 
 <template>
@@ -117,12 +117,12 @@ function getTimelineItems(experience: ExperienceCollectionItem): ExperienceTimel
 
               <template #wrapper="{ item }">
                 <template v-if="!(item as ExperienceTimelineItem)._isGhost">
-                  <LandingExperiencePositionCard
+                  <ExperiencePositionCard
                     :position="(item as ExperienceTimelineItem)._raw!"
                     :hide-present="hidePresent"
                   />
 
-                  <LandingExperienceSkills :skills="experience.skills" />
+                  <ExperienceSkills :skills="experience.skills" />
                 </template>
               </template>
             </UTimeline>
@@ -132,12 +132,12 @@ function getTimelineItems(experience: ExperienceCollectionItem): ExperienceTimel
             v-else
             class="flex flex-col"
           >
-            <LandingExperiencePositionCard
+            <ExperiencePositionCard
               :hide-present="hidePresent"
               :position="experience.position"
             />
 
-            <LandingExperienceSkills :skills="experience.skills" />
+            <ExperienceSkills :skills="experience.skills" />
           </div>
         </div>
       </div>

@@ -51,12 +51,12 @@ definePageMeta({
 
 <template>
   <template v-if="page && workExperience && education">
-    <LandingExperience
+    <Experience
       title="Work"
       :page="workExperience"
     />
 
-    <LandingExperience
+    <Experience
       class="mt-8"
       title="Education"
       title-as="h2"

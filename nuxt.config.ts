@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  css: ['~/assets/css/main.css'],
+  css: ['flag-icons/css/flag-icons.min.css', '~/assets/css/main.css'],
 
   routeRules: {
     '/': { prerender: true },

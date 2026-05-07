@@ -1,0 +1,18 @@
+title: Languages
+description: A list of languages I speak, along with my proficiency levels, skills, and certifications.
+
+languages:
+  - name: Vietnamese
+    flag: vn
+    proficiency: Native
+
+  - name: English
+    flag: gb
+    proficiency: Beginner
+    learning: true
+
+  - name: Japanese
+    flag: jp
+    proficiency: Beginner
+    learning: true
+    border: true
