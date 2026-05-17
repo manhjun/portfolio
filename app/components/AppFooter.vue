@@ -12,8 +12,8 @@ const { footer } = useAppConfig();
   >
     <template #left>
       <p class="text-sm">
-        &copy; {{ footer.credits.year }} • {{ footer.credits.message }}
-        <span class="font-bold text-default">
+        {{ footer.credits.before }}
+        <span class="font-bold">
           {{ footer.credits.name }}
         </span>
       </p>

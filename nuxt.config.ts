@@ -8,6 +8,20 @@ export default defineNuxtConfig({
 
   css: ['flag-icons/css/flag-icons.min.css', '~/assets/css/main.css'],
 
+  runtimeConfig: {
+    githubUserId: '',
+    githubToken: '',
+
+    public: {
+      discordKind: 'user',
+      discordUserId: '',
+      discordInvite: '',
+
+      instagramUsername: '',
+      xUsername: '',
+    },
+  },
+
   routeRules: {
     '/': { prerender: true },
   },
