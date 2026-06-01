@@ -19,6 +19,7 @@
     "@nuxtjs/sitemap": "^8.0.15",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
+    "@vueuse/core": "^14.3.0",
     "better-sqlite3": "^12.9.0",
     "flag-icons": "^7.5.0",
     "nuxt": "^4.4.2",

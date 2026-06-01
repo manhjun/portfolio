@@ -1,6 +1,6 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content';
 
-import { baseSchema, createButtonSchema } from './schemas/common';
+import { baseSchema } from './schemas/common';
 import { experienceSchema } from './schemas/experience';
 import { toolsSchema } from './schemas/tools';
 import { languagesSchema } from './schemas/languages';
@@ -12,7 +12,13 @@ export default defineContentConfig({
       source: 'index.yml',
       schema: z.object({
         hero: baseSchema.extend({
-          links: z.array(createButtonSchema),
+          links: z.array(
+            z.object({
+              name: z.string(),
+              url: z.string().editor({ input: 'link' }),
+              icon: z.string().optional(),
+            }),
+          ),
         }),
         about: baseSchema,
       }),

@@ -1,4 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import { redirects } from './config/redirects';
+
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
@@ -16,22 +17,9 @@ export default defineNuxtConfig({
 
   css: ['flag-icons/css/flag-icons.min.css', '~/assets/css/main.css'],
 
-  runtimeConfig: {
-    githubUserId: '',
-    githubToken: '',
-
-    public: {
-      discordKind: 'user',
-      discordUserId: '',
-      discordInvite: '',
-
-      instagramUsername: '',
-      xUsername: '',
-    },
-  },
-
   routeRules: {
     '/': { prerender: true },
+    ...redirects,
   },
 
   compatibilityDate: '2025-01-15',

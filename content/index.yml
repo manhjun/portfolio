@@ -8,7 +8,23 @@ description:
 hero:
   title: Hi, I'm Mạnh Dũng
   description: Full-stack developer based in Vietnam, <span id="age"></span> years old. I have a passion for building web applications and exploring new technologies.
+  links:
+    - name: GitHub
+      url: https://github.com/manhjun
+      icon: i-simple-icons-github
+    - name: Instagram
+      url: https://instagram.com/manhjun11
+      icon: i-simple-icons-instagram
+    - name: X
+      url: https://x.com/manhjun11
+      icon: i-simple-icons-x
+    - name: Discord
+      url: https://chat.dungnm.me
+      icon: i-simple-icons-discord
+    - name: Email
+      url: mailto:contact@dungnm.me
+      icon: i-simple-icons-maildotru
 
 about:
   title: About
-  description: As a front-end developer with experience, I leverage my FPT Polytechnic Web Programming Specialization experiences. My approach blends creative strategy with technical expertise, transforming concepts into functional, purposeful digital products that seamlessly integrate design and technology.
+  description: As a full-stack developer with experience, I leverage my FPT Polytechnic Web Programming Specialization experiences. My approach blends creative strategy with technical expertise, transforming concepts into functional, purposeful digital products that seamlessly integrate design and technology.

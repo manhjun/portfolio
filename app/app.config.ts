@@ -1,34 +1,6 @@
 export default defineAppConfig({
   global: {
-    email: 'dungnm.contact@gmail.com',
-
-    links: [
-      {
-        icon: 'i-simple-icons-discord',
-        to: 'discord',
-        target: '_blank',
-        'aria-label': 'Mạnh Dũng on Discord',
-      },
-      {
-        icon: 'i-simple-icons-instagram',
-        to: 'instagram',
-        target: '_blank',
-        'aria-label': 'Mạnh Dũng on Instagram',
-      },
-      {
-        icon: 'i-simple-icons-x',
-        to: 'x',
-        target: '_blank',
-        'aria-label': 'Mạnh Dũng on X',
-      },
-      {
-        icon: 'i-simple-icons-github',
-        to: 'github',
-        fallback: 'https://github.com/manhjun',
-        target: '_blank',
-        'aria-label': 'Mạnh Dũng on GitHub',
-      },
-    ],
+    email: 'contact@dungnm.me',
   },
   ui: {
     colors: {

@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import type { IndexCollectionItem } from '@nuxt/content';
 
-const { global } = useAppConfig();
-const config = useRuntimeConfig();
-
 defineProps<{
   page: IndexCollectionItem;
 }>();
@@ -16,32 +13,6 @@ useHead({
     },
   ],
 });
-
-const { data: github } = await useFetch('/api/socials/github');
-
-const resolveLink = (to: string, fallback = '') => {
-  const resolvers: Record<string, () => string> = {
-    github: () => github.value?.url || fallback,
-
-    discord: () =>
-      config.public.discordKind === 'server'
-        ? config.public.discordInvite
-        : `https://discord.com/users/${config.public.discordUserId}`,
-
-    instagram: () => `https://instagram.com/${config.public.instagramUsername}`,
-
-    x: () => `https://x.com/${config.public.xUsername}`,
-  };
-
-  return resolvers[to]?.() || to || fallback;
-};
-
-const links = computed(() =>
-  global.links.map((item) => ({
-    ...item,
-    to: resolveLink(item.to, item.fallback),
-  })),
-);
 </script>
 
 <template>
@@ -71,11 +42,10 @@ const links = computed(() =>
 
     <template #links>
       <ULink
-        v-for="(link, index) of links"
+        v-for="(link, index) of page.hero.links"
         :key="index"
-        :to="link.to"
-        :target="link.target"
-        :aria-label="link['aria-label']"
+        :to="link.url"
+        target="_blank"
         rel="noopener noreferrer"
         as="button"
       >
