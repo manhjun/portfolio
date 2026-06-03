@@ -94,7 +94,7 @@ onMounted(async () => {
   };
 
   let lastTime = performance.now();
-  const interval = 1000 / 40; // 50fps
+  const interval = 1000 / 40; // 40 FPS
 
   const frame = () => {
     if (performance.now() - lastTime < interval) return;
