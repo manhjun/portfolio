@@ -1,4 +1,4 @@
-import { redirects } from './config/redirects';
+import { routeRedirects } from './config/redirects';
 
 export default defineNuxtConfig({
   modules: [
@@ -19,7 +19,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/': { prerender: true },
-    ...redirects,
+    ...routeRedirects,
   },
 
   compatibilityDate: '2025-01-15',
