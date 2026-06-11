@@ -1,0 +1,40 @@
+name: Generate Resume PDF
+
+on:
+  push:
+    paths:
+      - 'content/resume/**'
+      - 'app/components/Resume.vue'
+
+jobs:
+  gen-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Install Chromium
+        run: npx puppeteer browsers install chrome
+
+      - name: Build
+        run: npm run build
+
+      - name: Start server
+        run: node .output/server/index.mjs &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000
+
+      - name: Generate Resume PDF
+        run: node scripts/pdf.js
+
+      - name: Commit PDF
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: regenerate resume PDF'
+          file_pattern: 'public/pdfs/*.pdf'

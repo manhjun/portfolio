@@ -1,0 +1,109 @@
+seo:
+  title: Resume - Nguyen Manh Dung
+  description: >
+    Fullstack Developer with experience in Vue.js, Nuxt.js, React.js, Next.js,
+    PHP, Laravel, and MySQL. Seeking to contribute to real-world projects while
+    improving technical and system design skills.
+
+name:
+  first: Nguyen
+  middle: Manh
+  last: Dung
+
+about: >
+  Fullstack Developer with hands-on experience building web applications using Vue.js, Nuxt.js, PHP, Laravel, and MySQL.
+  Experienced in developing responsive user interfaces, integrating RESTful APIs.
+  Seeking opportunities to further strengthen full-stack development and system design skills.
+
+position: Fullstack Developer
+
+contact:
+  email: contact@dungnm.me
+  phone: +84 337 787 183
+  location: Hanoi, Vietnam
+  links:
+    - site: GitHub
+      name: manhjun
+      url: https://github.com/manhjun
+    - site: LinkedIn
+      name: manhjun
+      url: https://www.linkedin.com/in/manhjun/
+    - site: Portfolio
+      name: dungnm.me
+      url: https://dungnm.me
+
+education:
+  - school: FPT Polytechnic
+    degree: Back-end
+    major: Web Programming
+    period:
+      startDate: 2022-07-15
+      endDate: 2024-12-15
+    gpa: 3.65/4.0
+
+experience:
+  - company: Miichisoft Vietnam Young Creative JSC
+    position: Intern Developer
+    period:
+      startDate: 2025-03-03
+      endDate: 2025-05-15
+    description: |
+      - Developed and maintained warning list page for displaying disaster notifications and alerts.
+      - Built alert status management interface using Vue.js, allowing operators to monitor and update warning statuses efficiently.
+      - Implemented disaster alert pages and integrated RESTful APIs to display real-time warning information.
+      - Collaborated with backend developers and participated in code reviews to ensure data consistency and maintainable code quality.
+      - Worked within an 8-member development team using Git-based workflows to deliver front-end features on schedule.
+      - Completed internal training programs covering PHP, Laravel, MySQL, and software development best practices.
+
+  - company: EMC Group Joint Stock Company
+    position: Fresher Developer
+    period:
+      startDate: 2025-05-26
+      endDate: 2025-12-31
+    description: |
+      - Developed responsive user interfaces for a lawyer consulting website using HTML, CSS, and JavaScript.
+      - Converted design requirements into reusable UI components and ensured compatibility across desktop and mobile devices.
+      - Implemented and maintained web application features using PHP and Next.js based on client requirements.
+      - Integrated frontend components with backend APIs to deliver complete user-facing functionality.
+      - Collaborated with developers to analyze requirements, implement technical solutions, and ensure project quality.
+      - Participated in testing, debugging, and maintenance activities to improve application stability and usability.
+
+projects:
+  - company: Miichisoft Vietnam Young Creative JSC
+    name: Disaster Warning System
+    period:
+      startDate: 2025-03-03
+      endDate: 2025-05-15
+
+  - company: EMC Group Joint Stock Company
+    name: Lawyer Consulting Website
+    period:
+      startDate: 2025-08-01
+      endDate: 2025-09-30
+
+skills:
+  - category: Front-end
+    items:
+      - Vue.js
+      - Nuxt.js
+      - React.js
+      - Next.js
+  - category: Back-end
+    items:
+      - PHP
+      - Laravel
+      - Node.js
+      - Express.js
+  - category: Database
+    items:
+      - MySQL
+      - PostgreSQL
+      - SQL Server
+      - Redis
+  - category: Tools
+    items:
+      - Git
+      - Postman
+      - Figma
+      - Trello
+      - Photoshop

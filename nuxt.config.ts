@@ -61,6 +61,12 @@ export default defineNuxtConfig({
         weights: ['100 800'],
         global: true,
       },
+      {
+        name: 'Roboto',
+        provider: 'google',
+        weights: ['100 900'],
+        global: true,
+      },
     ],
   },
 });

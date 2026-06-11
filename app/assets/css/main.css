@@ -5,6 +5,7 @@
 
 @theme static {
   --font-sans: 'DM Sans', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
   --font-serif: 'Geist', serif;
   --font-jetbrains: 'JetBrains Mono', monospace;
   --font-gambarino: 'Gambarino', serif;

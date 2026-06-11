@@ -20,6 +20,8 @@ useHead({
 <template>
   <UApp>
     <NuxtLayout>
+      <ArtPlum />
+
       <UMain class="relative min-h-0">
         <NuxtPage />
       </UMain>

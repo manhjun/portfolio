@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "resume:pdf": "node ./scripts/pdf.js",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
@@ -15,7 +16,7 @@
     "@iconify-json/simple-icons": "^1.2.78",
     "@nuxt/content": "3.13.0",
     "@nuxt/image": "2.0.0",
-    "@nuxt/ui": "^4.6.1",
+    "@nuxt/ui": "^4.8.2",
     "@nuxtjs/sitemap": "^8.0.15",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",
     "eslint": "^10.2.0",
+    "puppeteer": "^25.1.0",
     "typescript": "^6.0.2",
     "vue-tsc": "^3.2.6"
   },
