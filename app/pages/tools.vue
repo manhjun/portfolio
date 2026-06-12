@@ -1,23 +1,4 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('tools', () => {
-  return queryCollection('tools').first();
-});
-
-if (!page.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Page not found',
-    fatal: true,
-  });
-}
-
-useSeoMeta({
-  title: page.value?.seo.title || page.value?.title,
-  ogTitle: page.value?.seo.title || page.value?.title,
-  description: page.value?.seo.description || page.value?.description,
-  ogDescription: page.value?.seo.description || page.value?.description,
-});
-
 definePageMeta({
   label: 'Tech Stack',
   order: 4,
@@ -26,10 +7,13 @@ definePageMeta({
 </script>
 
 <template>
-  <template v-if="page">
+  <ContentPage
+    v-slot="{ data }"
+    collection="tools"
+  >
     <div class="flex w-full max-w-xl flex-col gap-12">
       <div
-        v-for="group in page.tools"
+        v-for="group in data.tools"
         :key="group.title"
         class="flex flex-col gap-6"
       >
@@ -58,5 +42,5 @@ definePageMeta({
         </div>
       </div>
     </div>
-  </template>
+  </ContentPage>
 </template>
